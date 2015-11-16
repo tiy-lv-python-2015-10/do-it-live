@@ -1,1 +1,1 @@
-web: gunicorn chirper.wsgi --log-file -
+web: gunicorn freds_list.wsgi --log-file -
