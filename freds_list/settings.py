@@ -159,3 +159,6 @@ SENDGRID_USER = os.environ['SENDGRID_USER']
 SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
 
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
