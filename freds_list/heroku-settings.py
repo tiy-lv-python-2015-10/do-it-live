@@ -5,6 +5,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 SENDGRID_USER = os.environ['SENDGRID_USER']
 SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
+
 BLACKLIST = ['debug_toolbar', 'django_extensions']
 INSTALLED_APPS = tuple([app for app in INSTALLED_APPS if app not in BLACKLIST])
 
