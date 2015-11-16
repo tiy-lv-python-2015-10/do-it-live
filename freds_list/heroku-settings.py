@@ -2,6 +2,7 @@ from .settings import *
 
 DEBUG=False
 SECRET_KEY = os.environ['SECRET_KEY']
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_USER = os.environ['SENDGRID_USER']
 SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
