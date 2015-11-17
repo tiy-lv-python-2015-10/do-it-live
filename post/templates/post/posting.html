@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+</head>
+<body>
+<form method="post" action="{% url 'posting' %}" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+        <div>
+        {{ field.erros }}
+        {{ field.label_tag }}{{ field }}
+        </div>
+    {% endfor %}
+<input type="submit" value="Post!" name="submit" class="btn btn-primary">
+</form>
+</body>
+</html>
