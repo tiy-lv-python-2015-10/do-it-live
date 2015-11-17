@@ -42,14 +42,15 @@ urlpatterns = [
 
     ####################  SHARED (anyone can access) ##########
     url(r'^posts/search$', 'fredslist.views.search',name='post_search'),
-    url(r'^posts/(?P<pk>\d+)/$', PostDetail.as_view(),name='post_detail'),
+    # url(r'^posts/(?P<pk>\d+)/$', PostDetail.as_view(),name='post_detail'),
     url(r'^top_posts/', TopPostList.as_view(), name="top_post_list"),
-    url(r'^posts/', PostList.as_view(), name="post_list"),
+    # url(r'^posts/', PostList.as_view(), name="post_list"),
+    url(r'^posts/(?P<subcategory>\w+)/$', PostList.as_view(), name="post_list"),
     url(r'^city/(?P<pk>\d+)/$', CityDetail.as_view(),name='city_detail'),
 
 
     ####################  FREDSLIST ADMIN ##########
-    url(r'^home/', MyPostList.as_view(), name='home_page'),
+    url(r'^home/',login_required( MyPostList.as_view()), name='home_page'),
     url(r'^create_post/$', login_required(CreatePost.as_view()), name='post_create'),
     url(r'^update_post/(?P<pk>\d+)', login_required(EditPost.as_view()), name='post_edit'),
     url(r'^delete_post/(?P<pk>\d+)', login_required(DeletePost.as_view()), name='post_delete'),

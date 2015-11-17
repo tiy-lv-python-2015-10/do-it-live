@@ -31,6 +31,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Images)
 class ImagesAdmin(admin.ModelAdmin):
+    extra = 3
     list_display = ('post', 'image',)
 
 @admin.register(Favorite)

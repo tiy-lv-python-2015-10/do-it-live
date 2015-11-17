@@ -32,7 +32,7 @@ class SubCategory(models.Model):
 
 
     def __str__(self):
-        return "{}, {}".format(self.category, self.title)
+        return "{}".format(self.title)
 
 
 class Post(models.Model):

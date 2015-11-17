@@ -1,30 +1,62 @@
 
 {% extends 'fredslist/base.html' %}
-{% load staticfiles %}
 {% load bootstrap3 %}
+{% load staticfiles %}
+
 
 {% block content %}
-<h2 class="text-center login_title">All posts</h2>
-    <div class="col-xs-12 col-sm-4">
+{#    <div class="nav_bar1">#}
+{#        <a href="{% url 'home' %}"><H3>Fredslist</H3></a>#}
+{#        <a href="{% url 'home_page' %}" class="inline account"><p>account</p></a>#}
+{#        <a href="{% url 'post_create' %}" class="inline"><p>post</p></a>#}
+{#    </div>#}
+    {% include 'fredslist/navbar.html' %}
+    <h2 class="text-center login_title">All posts</h2>
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">
+            <ul class="search_filters">
+                <li>search titles only</li>
+                <li>has image</li>
+                <li>posted today</li>
+                <li>search nearby areas</li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-10">
 
-        <form class="form-inline" role="form" method="post" action="{% url 'post_search' %}" class="form">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="email">Search Posts</label>
-                <input type="text" class="form-control" id="text" name="search_field">
-                <input type="submit" value="Search" name="submit" class="btn btn-primary">
-            </div>
-        </form>
-         {% for post in post_list %}
-             <a href="{% url 'post_detail' post.id %}"><h4 class="category_column">{{ post.posting_title }}</h4></a>
-             <a href="{% url 'create_favorite' post.id %}"><button>favorite</button></a>
-             {% for favorite in favorites %}
-                 {% if post.id == favorite.post.id %}
-                    <p>favorited!</p>
-                 {% endif %}
+            <form class="form-inline" role="form" method="post" action="{% url 'post_search' %}" class="form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Search Posts</label>
+                    <input type="text" class="form-control" id="text" name="search_field">
+                    <input type="submit" value="Search" name="submit" class="btn btn-primary">
+                </div>
+            </form>
+            <ul class="nav nav-tabs">
+              <li role="presentation" class="active"><a href="#">Home</a></li>
+              <li role="presentation"><a href="#">Profile</a></li>
+              <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+             {% for post in post_list %}
+                 <a href="{% url 'create_favorite' post.id %}"><i class="fa fa-star inline"></i></a>
+                 <a href="{% url 'post_detail' post.id %}" >
+                    <p class="inline created_at">{{ post.created_at }}</p>
+                     <h4 class="category_column inline post_title">{{ post.posting_title }}</h4>
+                     <p class="inline">- {{ post.specific_location }}</p>
+                 </a>
+                 <br>
+{#                 <a href="{% url 'create_favorite' post.id %}"><button>favorite</button></a>#}
+                 {% for favorite in favorites %}
+                     {% if post.id == favorite.post.id %}
+                        <style>
+                        .fa-star{
+                            color:#551A8B;
+                        }
+                        </style>
+                     {% endif %}
+                 {% endfor %}
              {% endfor %}
-         {% endfor %}
-     </div>
+        </div>
+    </div>
 {% endblock %}
 
 

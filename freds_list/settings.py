@@ -159,46 +159,46 @@ SENDGRID_USER = os.environ['SENDGRID_USER']
 SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
-
-
-
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        }
-    },
-    'handlers': {
-        'file': {
-            'level': "DEBUG",
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/general_logs.log"),
-            'formatter': 'verbose'
-        },
-        'mailer': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-
-    },
-    'loggers': {
-        'chirp': {
-            'handlers': ['file', 'console', 'mailer'],
-            'level': 'DEBUG',
-            'propagate': True
-        },
-    }
-
-}
-
+# import dj_database_url
+# DATABASES['default'] =  dj_database_url.config()
+#
+#
+#
+#
+#
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+#         }
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': "DEBUG",
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, "logs/general_logs.log"),
+#             'formatter': 'verbose'
+#         },
+#         'mailer': {
+#             'level': 'ERROR',
+#             'class': 'django.utils.log.AdminEmailHandler'
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose'
+#         }
+#
+#     },
+#     'loggers': {
+#         'chirp': {
+#             'handlers': ['file', 'console', 'mailer'],
+#             'level': 'DEBUG',
+#             'propagate': True
+#         },
+#     }
+#
+# }
+#

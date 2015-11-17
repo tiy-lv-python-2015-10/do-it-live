@@ -56,7 +56,12 @@ class PostList(ListView):
     model = Post
     template_name = 'fredslist/post/post_list.html'
     paginate_by = 5
-    queryset = Post.objects.order_by('-created_at')
+    # queryset = Post.objects.order_by('-created_at')
+
+    def get_queryset(self):
+        # city = self.kwargs['city']
+        subcategory = self.kwargs['subcategory']
+        return Post.objects.filter(sub_category__title = subcategory).order_by('-created_at')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
