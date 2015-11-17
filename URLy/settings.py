@@ -111,3 +111,39 @@ STATIC_ROOT = 'staticfiles'
 LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = reverse_lazy('list_profile')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatter':{
+        'verbose':{
+            'format': '%(asctime)s [%(process)d] [%(levelname)s]' ,
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'mailer': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'file': {
+            'level': "DEBUG",
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/general_logs.log"),
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'bookmark': {
+            'handlers': ['file', 'console', 'mailer'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+    }
+}
+
