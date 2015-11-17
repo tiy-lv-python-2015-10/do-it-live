@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>please choose a category</title>
+</head>
+<body>
+<ul>
+    {% for category in category_list %}
+        <li>
+        {{ category.title }}
+        </li>
+        {% for subs in subcategories %}
+           <ul>
+               {% if category.title == subs.category.title %}
+               <li>
+                {{ subs.title }}
+                {% endif %}
+            </li>
+           </ul>
+        {% endfor %}
+    {% endfor %}
+</ul>
+
+</body>
+</html>

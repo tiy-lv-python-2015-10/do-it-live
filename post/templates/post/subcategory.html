@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>please choose a subcategory</title>
+</head>
+<body>
+<ul>
+
+    {% for sub in sub %}
+
+        {% if city.state == 'alabama' %}
+            <li>
+        {{ city.city }}
+            </li>
+        {% endif %}
+
+    {% endfor %}
+</ul>
+
+</body>
+</html>
