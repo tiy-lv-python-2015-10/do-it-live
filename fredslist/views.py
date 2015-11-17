@@ -9,8 +9,9 @@ from fredslist.models import State, City, Post, Category, SubCategory, Favorite
 from fredslist.forms import PostForm
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
+import logging
 
-
+logger = logging.getLogger(__name__)
 # send_mail("Your Subject", "This is a simple text email body.","Yamil Asusta <cesarm2333@gmail.com>", ["cesarwebdevelopment@gmail.com"])
 # send_mail("Your Subject", "This is a simple text email body.","Yamil Asusta <cesarwebdevelopment@gmail.com>", ["cesarm2333@gmail.com"])
 
