@@ -1,3 +1,4 @@
+import logging
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -8,6 +9,7 @@ from bookmark.forms import BookmarkForm
 from bookmark.models import Bookmark
 from users.forms import RegistrationForm
 
+logger = logging.getLogger(__name__)
 
 class CreateUser(CreateView):
     model = User
@@ -25,9 +27,11 @@ class ListBookmark(ListView):
     queryset = Bookmark.objects.order_by('-timestamp')
     paginate_by = 5
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_load'] = timezone.now()
+        logger.debug('Listing Boomarks')
         return context
 
 

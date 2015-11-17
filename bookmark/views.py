@@ -1,3 +1,4 @@
+import logging
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import CreateView, DetailView
@@ -5,6 +6,7 @@ from bookmark import models
 from bookmark.forms import BookmarkForm
 from bookmark.models import Bookmark
 
+logger = logging.getLogger(__name__)
 
 class CreateBookmark(CreateView):
     model = Bookmark
