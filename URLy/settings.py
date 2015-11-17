@@ -115,10 +115,9 @@ LOGIN_REDIRECT_URL = reverse_lazy('list_profile')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatter':{
-        'verbose':{
-            'format': '%(asctime)s [%(process)d] [%(levelname)s]' ,
-            'datefmt': '%Y-%m-%d %H:%M:%S'
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s [%(process)d] [%(levelname)s]'
         },
     },
     'handlers': {
