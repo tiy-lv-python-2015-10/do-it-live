@@ -42,11 +42,12 @@ urlpatterns = [
 
     ####################  SHARED (anyone can access) ##########
     url(r'^posts/search$', 'fredslist.views.search',name='post_search'),
-    # url(r'^posts/(?P<pk>\d+)/$', PostDetail.as_view(),name='post_detail'),
+    url(r'^posts/(?P<pk>\d+)/$', PostDetail.as_view(),name='post_detail'),
     url(r'^top_posts/', TopPostList.as_view(), name="top_post_list"),
-    # url(r'^posts/', PostList.as_view(), name="post_list"),
-    url(r'^posts/(?P<subcategory>\w+)/$', PostList.as_view(), name="post_list"),
-    url(r'^city/(?P<pk>\d+)/$', CityDetail.as_view(),name='city_detail'),
+    url(r'^cityposts/(?P<pk>\d+)/$', PostList.as_view(), name="post_list"),
+    # url(r'^posts/(?P<subcategory>\w+)/(?P<city>\w+)/$', PostList.as_view(), name="post_list"),
+    # url(r'^posts/(?P<city>(\d+))/(?P<sub_category>(\d+))/$', PostList.as_view(), name="post_list"),
+    url(r'^(?P<pk>\d+)/$', CityDetail.as_view(),name='city_detail'),
 
 
     ####################  FREDSLIST ADMIN ##########

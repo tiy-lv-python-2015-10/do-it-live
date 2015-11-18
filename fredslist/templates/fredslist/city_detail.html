@@ -47,7 +47,7 @@
                     <ul>
                         {% for subc in c.unique_category %}
                             <li>
-                               <a href="{% url 'post_list'   %}">{{ subc.title}}</a>
+                               <a href="{% url 'post_list' subc.id %}">{{ subc.title}}</a>
                             </li>
                         {% endfor %}
                     </ul>

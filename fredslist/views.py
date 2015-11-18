@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 class StateList(ListView):
     model = State
     template_name = 'fredslist/shared/post_list.html'
+
     # queryset = State.objects.order_by('-city')
 
 
@@ -31,8 +32,13 @@ class StateList(ListView):
 
 class CityDetail(DetailView):
     model = City
+    #
+    # def get_object(self):
+    #     return get_object_or_404(self.request.user, pk=self.request.session['user_id'])
+
 
     def get_context_data(self, **kwargs):
+        self.request.session['location'] = self.kwargs['pk']
         context = super().get_context_data(**kwargs)
         context['page_load'] = timezone.now()
         context['category'] = Category.objects.all()
@@ -56,14 +62,17 @@ class PostList(ListView):
     model = Post
     template_name = 'fredslist/post/post_list.html'
     paginate_by = 5
-    # queryset = Post.objects.order_by('-created_at')
+    queryset = Post.objects.order_by('-created_at')
+
+
 
     def get_queryset(self):
-        # city = self.kwargs['city']
-        subcategory = self.kwargs['subcategory']
-        return Post.objects.filter(sub_category__title = subcategory).order_by('-created_at')
+        location = self.request.session.get('location')
+        subcategory = self.kwargs['pk']
+        return Post.objects.filter(location__id = location, sub_category__id = subcategory).order_by('-created_at')
 
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
         context['page_load'] = timezone.now()
         context['favorites'] = Favorite.objects.all()
