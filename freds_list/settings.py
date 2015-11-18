@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework.filters',
+    'corsheaders',
     'users',
     'fredslist',
     'api',
@@ -51,6 +52,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -94,6 +96,7 @@ DATABASES = {
         'PORT': '',
     }
 }
+
 
 
 # Internationalization
@@ -157,6 +160,14 @@ CORS_ALLOW_CREDENTIALS = True
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
 SENDGRID_USER = os.environ['SENDGRID_USER']
 SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
 
 
 # import dj_database_url

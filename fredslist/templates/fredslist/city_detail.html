@@ -1,11 +1,12 @@
 {% extends 'fredslist/base.html' %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-
+{% load cache %}
 {% block content %}
 
 <div class="home_main_container">
     <div class="row-fluid">
+        {% cache 500 slow %}
         <div class="col-xs-12 col-sm-3 category_column category_firstcolumn">
             <a href="{% url 'home' %}"><h1 class="category_list_sitetitle">fredslist</h1></a>
             <p class="text_center">post to classifieds</p>
@@ -33,6 +34,7 @@
             <p class="text_center">craig connects</p>
 
         </div>
+        {% endcache %}
         <div class="col-xs-12 col-sm-7  category_secondcolumn">
             <div class="row">
                 <div class="col-xs-12">

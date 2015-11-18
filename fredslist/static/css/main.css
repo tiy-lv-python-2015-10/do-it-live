@@ -135,7 +135,14 @@ a:hover, a:visited, a:link, a:active
     font-size: 2em;
 }
 
+
 .post_image{
     height: 250px;
     width: 250px;
+}
+
+.thumb{
+    height: 75px;
+    width: 75px;
+    display: none;
 }

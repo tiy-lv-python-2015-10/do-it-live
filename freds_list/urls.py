@@ -26,6 +26,7 @@ from django.conf.urls.static import static
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from rest_framework.authtoken import views
+from django.views.decorators.cache import cache_page
 
 
 
@@ -43,7 +44,7 @@ urlpatterns = [
     ####################  SHARED (anyone can access) ##########
     url(r'^posts/search$', 'fredslist.views.search',name='post_search'),
     url(r'^posts/(?P<pk>\d+)/$', PostDetail.as_view(),name='post_detail'),
-    url(r'^top_posts/', TopPostList.as_view(), name="top_post_list"),
+    url(r'^top_posts/', cache_page(50)(TopPostList.as_view()), name="top_post_list"),
     url(r'^cityposts/(?P<pk>\d+)/$', PostList.as_view(), name="post_list"),
     # url(r'^posts/(?P<subcategory>\w+)/(?P<city>\w+)/$', PostList.as_view(), name="post_list"),
     # url(r'^posts/(?P<city>(\d+))/(?P<sub_category>(\d+))/$', PostList.as_view(), name="post_list"),

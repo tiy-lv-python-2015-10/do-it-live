@@ -22,7 +22,6 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-10">
-
             <form class="form-inline" role="form" method="post" action="{% url 'post_search' %}" class="form">
                 {% csrf_token %}
                 <div class="form-group">
@@ -31,20 +30,23 @@
                     <input type="submit" value="Search" name="submit" class="btn btn-primary">
                 </div>
             </form>
+
             <ul class="nav nav-tabs">
-              <li role="presentation" class="active"><a href="#">Home</a></li>
-              <li role="presentation"><a href="#">Profile</a></li>
-              <li role="presentation"><a href="#">Messages</a></li>
+              <li role="presentation" class="active" id="list"><a href="#">List</a></li>
+              <li role="presentation" id="thumb"><a href="#" >Thumb</a></li>
+              <li role="presentation"><a href="#" id="gallery">Gallery</a></li>
             </ul>
+
+            <div class="thumb_list_view">
              {% for post in post_list %}
+                  {% for post in post.post_images %}
+                      <img src="{{ post.image.url }}" class="post_image thumb" >
+                  {% endfor %}
                  <a href="{% url 'create_favorite' post.id %}"><i class="fa fa-star inline"></i></a>
-                 <a href="{% url 'post_detail' post.id %}" >
-                    <p class="inline created_at">{{ post.created_at }}</p>
-                     <h4 class="category_column inline post_title">{{ post.posting_title }}</h4>
-                     <p class="inline">- {{ post.specific_location }}</p>
-                 </a>
+                 <p class="inline created_at">{{ post.created_at }}</p>
+                 <a href="{% url 'post_detail' post.id %}" ><h4 class="category_column inline post_title">{{ post.posting_title }}</h4></a>
+                 <p class="inline">- {{ post.specific_location }}</p>
                  <br>
-{#                 <a href="{% url 'create_favorite' post.id %}"><button>favorite</button></a>#}
                  {% for favorite in favorites %}
                      {% if post.id == favorite.post.id %}
                         <style>
@@ -55,6 +57,25 @@
                      {% endif %}
                  {% endfor %}
              {% endfor %}
+            </div>
+
+{#            <div class="gallery_view container-fluid">#}
+{#                {% for post in post_list %}#}
+{#                    {% for post in post.post_images %}#}
+{##}
+{#                        <div class="row">#}
+{#                            <div class="col-xs-12 col-sm-4">#}
+{#                                <div class="gallery_img container-fluid">#}
+{#                                    <img src="{{ post.image.url }}" class="post_image thumb" >#}
+{#                                    <a href="{% url 'post_detail' post.id %}" ><h4 class="category_column inline post_title">{{ post.posting_title }}</h4></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                    {% endfor %}#}
+{#                {% endfor %}#}
+{##}
+{#            </div>#}
         </div>
     </div>
 {% endblock %}

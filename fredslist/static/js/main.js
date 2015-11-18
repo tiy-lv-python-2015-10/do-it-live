@@ -1,3 +1,16 @@
-/**
- * Created by cesar on 11/11/15.
- */
+$(document).ready(function(){
+
+    $('#list').click(function(){
+        $('.thumb').css("display","none");
+    });
+
+    $('#thumb').click(function(){
+
+        $('.thumb').css("display","inline-block");
+    });
+
+    $('#gallery').click(function(){
+        $('.thumb').css("display","none").addClass("intro");
+    });
+
+});

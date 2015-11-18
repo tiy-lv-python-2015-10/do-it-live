@@ -27,6 +27,7 @@ class StateList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['city'] = City.objects.all()
+        # context['new_city'] = City.objects.filter(state__state =)
         return context
 
 
