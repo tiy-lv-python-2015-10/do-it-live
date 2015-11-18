@@ -27,7 +27,7 @@ before_script:
   - python manage.py migrate
 
 script:
- - coverage run --source='.' manage.py test users chirp api
+ - coverage run --source='.' manage.py test users fredslist api
 
 after_success:
  - coveralls
