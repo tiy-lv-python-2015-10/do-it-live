@@ -21,6 +21,10 @@
            <button type="submit" value='Login' class="btn btn-default">Login</button>
            <a class="btn btn-default" href='{% url 'register' %}' role="button">Register</a>
        </form>
+       <h2>Twitch Login</h2>
+           <a href="{% url 'social:begin' 'twitch' %}?next={{ request.path }}">Login to Twitch</a>
+       <h2>Battle.net Login</h2>
+           <a href="{% url 'social:begin' 'battlenet-oauth2' %}?next={{ request.path }}">Login to Battle.net</a>
        <p>
            <img src="{% static 'images/login.jpg' %}">
        </p>

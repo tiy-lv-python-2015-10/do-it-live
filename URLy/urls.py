@@ -20,6 +20,7 @@ from bookmark.views import CreateBookmark, BookmarkDetail
 from users.views import CreateUser, ListBookmark, ListProfile, BookmarkDelete, BookmarkUpdate
 
 urlpatterns = [
+    url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'$^', ListBookmark.as_view(), name='list_bookmarks'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/register/', CreateUser.as_view(), name='register'),
@@ -29,6 +30,6 @@ urlpatterns = [
     url(r'(?P<pk>\d+)/$', BookmarkDetail.as_view(), name='bookmark_detail'),
     url(r'(?P<short_link>\w+)/$', 'bookmark.views.link', name='link'),
     url(r'delete/(?P<pk>\d+)', BookmarkDelete.as_view(), name='delete_bookmark'),
-    url(r'edit/(?P<pk>\d+)', BookmarkUpdate.as_view(), name='update_bookmark')
+    url(r'edit/(?P<pk>\d+)', BookmarkUpdate.as_view(), name='update_bookmark'),
 
 ]

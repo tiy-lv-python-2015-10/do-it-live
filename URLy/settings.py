@@ -38,9 +38,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'bookmark',
     'users',
     'django_extensions',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.twitch.TwitchOAuth2',
+    'social.backends.battlenet.BattleNetOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,6 +59,19 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+)
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.social_auth.associate_by_email',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
 )
 
 ROOT_URLCONF = 'URLy.urls'
@@ -67,6 +87,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -135,10 +157,11 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, "logs/general_logs.log"),
             'formatter': 'verbose'
-        }
+        },
+
     },
     'loggers': {
-        'bookmark': {
+        'users': {
             'handlers': ['file', 'console', 'mailer'],
             'level': 'DEBUG',
             'propagate': True
@@ -146,3 +169,9 @@ LOGGING = {
     }
 }
 
+
+SOCIAL_AUTH_TWITCH_KEY = 'bi34q9nnf8o05ooxonmkup55ko1humo'
+SOCIAL_AUTH_TWITCH_SECRET = 'ay5pvedf7kcrag5020wmr2eacsr87jk'
+
+SOCIAL_AUTH_BATTLENET_OAUTH2_KEY = '2wqgx7zhueu2uttw3t9gjahenzpp98wr'
+SOCIAL_AUTH_BATTLENET_OAUTH2_SECRET = 'BMxUrqbyvxdyW4WxVXMpznHyTqBrGmqu'

@@ -31,7 +31,8 @@ class ListBookmark(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_load'] = timezone.now()
-        logger.debug('Listing Boomarks')
+        print(__name__)
+        logger.warn('***********Listing Boomarks*************')
         return context
 
 
